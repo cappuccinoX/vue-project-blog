@@ -1,10 +1,6 @@
 <template>
   <div id="blog_homepage">
     <h1>{{ msg }}</h1>
-    <ul>
-      <li><a target="_blank" href="https://nodejs.org/">Node.js</a></li>
-      <li><a target="_blank" href="https://www.javascript.com/">JavaScript</a></li>
-    </ul>
   </div>
 </template>
 

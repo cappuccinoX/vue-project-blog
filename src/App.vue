@@ -1,17 +1,16 @@
 <template>
   <div id="app">
+    <tab></tab>
     <router-view/>
   </div>
 </template>
 
 <script>
 import tab from '@/components/tab'
-import blogHomePage from '@/components/BlogHomePage'
 
 export default {
   components: {
-    tab,
-    blogHomePage
+    tab
   }
 }
 </script>
@@ -23,7 +22,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 body{
   /*background-image: url('./assets/sky.jpg')*/

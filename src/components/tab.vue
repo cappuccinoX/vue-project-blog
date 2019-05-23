@@ -11,6 +11,12 @@
           </li>
         </ul>
       </div>
+      <form class="navbar-form" role="search">
+        <div class="from-group">
+          <input type="text" class="form-control" placeholder="search">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </form>
     </div>
   </nav>
 </template>

@@ -12,22 +12,34 @@ export default new Router({
     {
       path: '/home',
       name: 'BlogHomePage',
-      component: BlogHomePage
+      component: BlogHomePage,
+      meta: {
+        title: 'homepage'
+      }
     },
     {
       path: '/article',
       name: 'MyArticles',
-      component: article
+      component: article,
+      meta: {
+        title: 'article'
+      }
     },
     {
       path: '/life',
       name: 'MyLife',
-      component: life
+      component: life,
+      meta: {
+        title: 'life'
+      }
     },
     {
       path: '/msgboard',
       name: 'MessageBoard',
-      component: msgboard
+      component: msgboard,
+      meta: {
+        title: 'message board'
+      }
     }
   ]
 })

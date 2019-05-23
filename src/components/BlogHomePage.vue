@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'blog homepage',
+  name: 'homepage',
   data () {
     return {
       msg: 'Welcome to my blog!'

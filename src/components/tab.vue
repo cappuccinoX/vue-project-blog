@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid" style="background-color: black">
       <div class="navbar-header">
         <img src="../assets/image/logo.png" height="50" width="50">
       </div>
@@ -38,8 +38,5 @@ export default {
 <style>
 .router-link-active {
   background: gray;
-}
-.container-fluid {
-  background: black;
 }
 </style>

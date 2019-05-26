@@ -22,7 +22,7 @@ export default {
 <style>
 #about {
   width: 300px;
-  height: 400px;
+  height: 350px;
   float: right;
   margin-right:20px
 }

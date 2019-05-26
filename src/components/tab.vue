@@ -2,7 +2,7 @@
   <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid" style="background-color: black">
       <div class="navbar-header">
-        <img src="../assets/image/logo.png" height="50" width="50">
+<!--        <img src="../assets/image/logo.png" height="50" width="50">-->
       </div>
       <div>
         <ul class="nav navbar-nav">

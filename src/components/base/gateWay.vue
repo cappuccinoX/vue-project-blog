@@ -6,7 +6,7 @@
       </h3>
     </div>
     <div class="panel-body">
-      <span v-for="item in tags" v-bind:key="item.name" class="label label-primary" :style=""> {{item.name}} </span>
+      <span v-for="item in tags" v-bind:key="item.name" class="label label-primary"> {{item.name}} </span>
     </div>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 <style>
   #tags {
     width: 300px;
-    height: 200px;
+    height: 150px;
     float: right;
     margin-right:20px
   }

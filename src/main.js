@@ -1,15 +1,25 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
-import App from './App'
-import router from './router'
+import Vue from "vue"
+import App from "@/App.vue";
+import nayoCore from "nayo-admin-core";
 
-Vue.config.productionTip = false
+// layout
+import { nayo_layout_1 } from "@/layout";
+Vue.component("layout_1", nayo_layout_1)
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
-})
+import route_config from "@/configs/router.config";
+import lang_config from "@/configs/lang.config";
+
+Vue.use(nayoCore);
+
+let nayo = new nayoCore(App);
+
+// if you want to add new vuex options, you may be register it
+// nayo.storeRegister({});
+nayo.routerRegister(route_config);
+nayo.langRegister(lang_config);
+
+// here is the sample to add the title
+// you may be use different title or may be different title in different route
+document.title = "Blog";
+
+nayo.admin.$mount("#app");

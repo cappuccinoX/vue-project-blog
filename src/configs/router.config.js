@@ -3,21 +3,27 @@
 * */
 import Cookie from "js-cookie";
 
-import { home, lang, login, sub_page_1, sub_page_2 } from "@/pages";
+import { home, lang, login, sub_page_1, sub_page_2, article } from "@/pages";
 
 
 let routers = [
-    // {
-    //     name: "登录",
-    //     path: "/login",
-    //     independent: true,
-    //     template: login
-    // },
+    {
+        name: "登录",
+        path: "/login",
+        independent: true,
+        template: login
+    },
     {
         name: "首页",
         path: "/home",
         icon: "ivu-icon-md-home",
         template: home
+    },
+    {
+        name: "文章",
+        path: "/article",
+        icon: "ivu-icon-md-home",
+        template: article
     },
     {
         name: "子页面",
@@ -48,7 +54,7 @@ let routers = [
 
 // iView LoadingBar
 window.$iView.LoadingBar.config({
-  color: "#66ccff"  // bar color
+    color: "#66ccff"  // bar color
 });
 
 
@@ -59,23 +65,18 @@ routers.before = [
         window.$iView.LoadingBar.start();
     },
     (to, from, next) => {
-        // if (Cookie.get("username") == "admin") {
-        //     if (to.path == "/login") {
-        //         next("/");
-        //     } else {
-        //         next();
-        //     }
-        // } else {
-        //     if (to.path == "/login") {
-        //         next();
-        //     } else {
-        //         next("/login");
-        //     }
-        // }
-        if(to.path === "/home") {
-            next();
+        if (Cookie.get("username") == "admin") {
+            if (to.path == "/login") {
+                next("/");
+            } else {
+                next();
+            }
         } else {
-            next("/home");
+            if (to.path == "/login") {
+                next();
+            } else {
+                next("/login");
+            }
         }
     },
     (to, from, next) => {

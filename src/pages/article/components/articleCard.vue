@@ -8,21 +8,14 @@
 </template>
 <script>
     export default {
-        props: {
-            content: {},
-            title: {}
-        },
+        // props: {
+        //     content: {},
+        //     title: {}
+        // },
         data() {
             return {
-               content: `Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.\n
-                   Content of no border type. Content of no border type. Content of no border type. Content of no border type.`,
-                title: 'Article1'
+                content: "aa",
+                title: ""
             }
         },
         filters: {

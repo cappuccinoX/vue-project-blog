@@ -1,0 +1,1 @@
+export const GET_ARTICLE_URL = 'https://www.easy-mock.com/mock/5d9585a668fbce0e4ca78cfc/article/getDetails'

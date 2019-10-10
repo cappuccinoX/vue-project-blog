@@ -1,21 +1,48 @@
 <template>
     <div style="background:#eee;padding: 20px">
-        <Card :bordered="true">
+        <Card :bordered="true" @click.native="showDetails">
             <p slot="title">{{title}}</p>
             <p class="article-content">{{ content | ellipsis}}</p>
         </Card>
+        <Drawer
+                v-model="ifShowArticleDetails"
+                width="640"
+                :closable="false"
+                :title="title"
+        >
+            <div class="details-container">
+                <p>{{content}}</p>
+            </div>
+            <remark></remark>
+<!--            <div class="remark-container">-->
+<!--                <Input-->
+<!--                        maxlength="200"-->
+<!--                        show-word-limit-->
+<!--                        placeholder="请输入评论"-->
+<!--                />-->
+<!--            </div>-->
+        </Drawer>
     </div>
 </template>
 <script>
+    import remark from './remark'
     export default {
-        // props: {
-        //     content: {},
-        //     title: {}
-        // },
+        props: {
+            content: {},
+            title: {}
+        },
+        components: {
+            remark
+        },
         data() {
             return {
-                content: "aa",
-                title: ""
+                ifShowArticleDetails: false,
+                styles: {
+                    height: 'calc(100% - 55px)',
+                    overflow: 'auto',
+                    paddingBottom: '53px',
+                    position: 'static'
+                },
             }
         },
         filters: {
@@ -32,7 +59,9 @@
         created() {
         },
         methods: {
-
+            showDetails() {
+                this.ifShowArticleDetails = true
+            }
         }
     }
 </script>
@@ -41,5 +70,16 @@
     .ivu-card {
         height: 200px;
         width: 500px;
+        cursor: pointer;
+    }
+    .details-container {
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 500px;
+        font-size: 15px;
+        overflow: auto;
+    }
+    .remark-container {
     }
 </style>

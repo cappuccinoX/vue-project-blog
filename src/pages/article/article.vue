@@ -3,6 +3,8 @@
        <article-card ref="childArticleCard" v-for="(item, idx) in articleDetails" :key="idx"
                      :title="item.title"
                      :content="item.content"
+                     :type="item.type"
+                     :ID="item.ID"
        />
     </div>
 </template>

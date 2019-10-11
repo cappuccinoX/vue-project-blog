@@ -4,38 +4,56 @@
             <p><slot><b>添加评论</b></slot></p>
             <Input
                     type="textarea"
-                    maxlength="200"
+                    :maxlength="remarkMaxLength"
                     placeholder="请输入评论"
-                    rows="3"
+                    :rows="rows"
             />
-            <Button class="submit-remark" type="primary">提交</Button>
-            <Divider orientation="left">{{remarkReviewTitle}}</Divider>
-            <p>aaaaaaaaaaaa</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
-            <Divider></Divider>
-            <p>bbbbbbbbbbbbbbbb</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
-            <Divider></Divider>
-            <p>sfsfds</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
-            <Divider></Divider>
-            <p>vvvvsdfs</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
-            <Divider></Divider>
-            <p>aaaasdfsdfaaaaaaaa</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
-            <Divider></Divider>
-            <p>nhgnhg</p>
-            <Button style="float: right; margin-bottom: 5px" size="small">回复</Button>
+            <Button class="submit-remark" type="primary" @click.native="submitRemark">提交</Button>
+            <Divider orientation="left">{{`${remarkCount}条评论`}}</Divider>
+            <reply
+                    ref="childReply"
+            ></reply>
+            <div v-for="(item, index) in remark" :key="index" class="remark">
+                <Row>
+                    <Col span="2"><img src="../../../assets/staticImages/profileImage.jpg" style="width: 40px; height: 40px"/></Col>
+                    <Col span="4">
+                        <p>{{item.name}}</p>
+                        <p>{{item.date}}</p>
+                    </Col>
+                </Row>
+                <p>
+                    {{item.message}}
+                    <Button style="float: right" size="small" @click.native="reply">回复</Button>
+                    <Divider></Divider>
+                </p>
+            </div>
         </Card>
     </div>
 </template>
 <script>
+    import reply from './reply'
     export default {
+        props:{
+            remark: {},
+            remarkCount: {}
+        },
+        components: {
+            reply
+        },
         data() {
             return {
-                remark: '',
-                remarkReviewTitle: '20条评论'
+                remarkMaxLength: 200,
+                rows: 3, // 评论输入框默认行数
+                showReply: false
+            }
+        },
+        methods: {
+            reply() {
+                this.$refs.childReply.showReply = true
+            },
+            submitRemark() {
+                // 判断是否登录
+
             }
         }
     }

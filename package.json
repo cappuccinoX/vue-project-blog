@@ -9,13 +9,14 @@
   "dependencies": {
     "@antv/data-set": "^0.10.2",
     "@antv/g2": "^3.5.3",
+    "axios": "*",
     "core-js": "^2.6.5",
     "countup.js": "^2.0.4",
     "js-cookie": "^2.2.0",
+    "moment": "^2.24.0",
     "nayo-admin-core": "^1.0.7",
     "nodemon": "^1.19.2",
-    "vue": "^2.6.10",
-    "axios": "*"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@kazupon/vue-i18n-loader": "^0.3.0",

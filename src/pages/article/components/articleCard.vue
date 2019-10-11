@@ -13,23 +13,23 @@
             <div class="details-container">
                 <p>{{content}}</p>
             </div>
-            <remark></remark>
-<!--            <div class="remark-container">-->
-<!--                <Input-->
-<!--                        maxlength="200"-->
-<!--                        show-word-limit-->
-<!--                        placeholder="请输入评论"-->
-<!--                />-->
-<!--            </div>-->
+            <remark
+                :remark="remark"
+                :remarkCount="remarkCount"
+            />
         </Drawer>
     </div>
 </template>
 <script>
     import remark from './remark'
+    import {GET_REMARK_URL} from "../api";
+
     export default {
         props: {
             content: {},
-            title: {}
+            title: {},
+            type: {},
+            ID: {}
         },
         components: {
             remark
@@ -37,12 +37,8 @@
         data() {
             return {
                 ifShowArticleDetails: false,
-                styles: {
-                    height: 'calc(100% - 55px)',
-                    overflow: 'auto',
-                    paddingBottom: '53px',
-                    position: 'static'
-                },
+                remark: [],
+                remarkCount: 0
             }
         },
         filters: {
@@ -59,8 +55,28 @@
         created() {
         },
         methods: {
-            showDetails() {
-                this.ifShowArticleDetails = true
+            async showDetails() {
+                try {
+                    this.ifShowArticleDetails = true
+                    const cond = {
+                        articleID: this.ID,
+                        limit: 10,
+                        offset: 0
+                    }
+                    const result = await this.$axios.post(GET_REMARK_URL, cond)
+                    if (result.data.data.code === 10000) {
+                        for(const item of result.data.data.data) {
+                            item.date = this.$moment(item.date).format('YYYY-MM-DD HH:mm:ss')
+                        }
+                        this.remark = result.data.data.data
+                        this.remarkCount = result.data.data.data.length
+                    } else {
+                        this.$Message.error('获取评论失败')
+                    }
+                } catch (e) {
+                    this.$Message.error(e.message)
+                }
+
             }
         }
     }
@@ -79,7 +95,5 @@
         height: 500px;
         font-size: 15px;
         overflow: auto;
-    }
-    .remark-container {
     }
 </style>

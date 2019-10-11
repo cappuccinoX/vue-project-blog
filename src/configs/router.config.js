@@ -3,7 +3,7 @@
 * */
 import Cookie from "js-cookie";
 
-import { home, lang, login, sub_page_1, sub_page_2, article } from "@/pages";
+import { home, lang, login, sub_page_1, sub_page_2, article, register } from "@/pages";
 
 
 let routers = [
@@ -12,6 +12,12 @@ let routers = [
         path: "/login",
         independent: true,
         template: login
+    },
+    {
+        name: "注册",
+        path: "/register",
+        independent: true,
+        template: register
     },
     {
         name: "首页",

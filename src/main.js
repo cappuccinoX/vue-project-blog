@@ -3,12 +3,15 @@ import App from "@/App.vue";
 import nayoCore from "nayo-admin-core";
 import axios from 'axios';
 import moment from 'moment'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
 
 // layout
 import { nayo_layout_1 } from "@/layout";
 Vue.component("layout_1", nayo_layout_1);
 Vue.prototype.$axios = axios
 Vue.prototype.$moment = moment
+Vue.use(iView)
 
 import route_config from "@/configs/router.config";
 import lang_config from "@/configs/lang.config";

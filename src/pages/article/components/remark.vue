@@ -62,7 +62,7 @@
     .remark-container {
         margin-top: 20px;
         margin-left: 20px;
-        margin-right: 20px
+        margin-right: 20px;
     }
     .submit-remark {
         margin-top: 10px

@@ -1,9 +1,10 @@
 <template>
-    <div style="background:#eee;padding: 20px">
-        <Card :bordered="true" @click.native="showDetails">
-            <p slot="title">{{title}}</p>
-            <p class="article-content">{{ content | ellipsis}}</p>
-        </Card>
+    <div class="article-container">
+        <List item-layout="vertical">
+            <ListItem v-for="(item, index) in data" :key="index" @click.native="showDetails(index)">
+                <ListItemMeta :title="item.title" :description="item.content | ellipsis"></ListItemMeta>
+            </ListItem>
+        </List>
         <Drawer
                 v-model="ifShowArticleDetails"
                 width="640"
@@ -21,24 +22,23 @@
     </div>
 </template>
 <script>
-    import remark from './remark'
-    import {GET_REMARK_URL} from "../api";
+    import remark from './remark';
+    import {GET_REMARK_URL} from '../api';
 
     export default {
         props: {
-            content: {},
-            title: {},
-            type: {},
-            ID: {}
+            data: {}
         },
         components: {
-            remark
+            remark,
         },
         data() {
             return {
                 ifShowArticleDetails: false,
                 remark: [],
-                remarkCount: 0
+                remarkCount: 0,
+                title: '',
+                content: ''
             }
         },
         filters: {
@@ -46,8 +46,8 @@
                 if (!value) {
                     return  '';
                 }
-                if (value.length > 400) {
-                    return value.slice(0, 400) + '...'
+                if (value.length > 100) {
+                    return value.slice(0, 100) + '...'
                 }
                 return value
             }
@@ -55,11 +55,13 @@
         created() {
         },
         methods: {
-            async showDetails() {
+            async showDetails(index) {
                 try {
-                    this.ifShowArticleDetails = true
+                    this.ifShowArticleDetails = true;
+                    this.title = this.data[index].title;
+                    this.content = this.data[index].content;
                     const cond = {
-                        articleID: this.ID,
+                        articleID: this.data[index].articleID,
                         limit: 10,
                         offset: 0
                     }
@@ -82,12 +84,7 @@
     }
 </script>
 
-<style type="text/css" scoped>
-    .ivu-card {
-        height: 200px;
-        width: 500px;
-        cursor: pointer;
-    }
+<style lang="less" scoped>
     .details-container {
         padding-top: 10px;
         padding-left: 10px;
@@ -95,5 +92,16 @@
         height: 500px;
         font-size: 15px;
         overflow: auto;
+    }
+    .article-container {
+        background: #eee;
+        padding: 20px;
+        width: 800px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius:5px;
+        border-radius: 5px;
+        /deep/.ivu-list-item-meta-content {
+            cursor: pointer;
+        }
     }
 </style>
